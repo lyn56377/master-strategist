@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis of the Input - Master Strategist</title>
+  <style>
+    /* Global Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { font-family: Arial, sans-serif; background: white; color: #333; padding: 20px; }
+    .container { max-width: 900px; margin: 20px auto; padding: 20px; }
+    h1, h2 { margin-bottom: 10px; }
+    h1 { text-align: center; }
+    .section { margin-bottom: 30px; }
+    .section h2 { margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    ul { list-style-type: none; margin-left: 0; }
+    ul li { padding: 5px 0; }
+    label { cursor: pointer; }
+    /* Form Styles */
+    form {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    .survey-button, .next-button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: blue;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .survey-button:hover, .next-button:hover { background-color: darkblue; }
+    .result { background: #e7f3ff; border: 1px solid #b3d4fc; padding: 15px; border-radius: 5px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Analysis of Your Input</h1>
+    <div class="section">
+      <p>Select an item from each category below to help diagnose your challenges. After making your choice, complete the survey to generate a summary analysis.</p>
+    </div>
+    
+    <!-- Categories with Radio Buttons -->
+    <div class="section">
+      <h2>Needs</h2>
+      <ul id="needs-list">
+        <li><input type="radio" name="needs" value="Food" id="need-food"><label for="need-food">Food</label></li>
+        <li><input type="radio" name="needs" value="Shelter" id="need-shelter"><label for="need-shelter">Shelter</label></li>
+        <li><input type="radio" name="needs" value="Sleep" id="need-sleep"><label for="need-sleep">Sleep</label></li>
+        <li><input type="radio" name="needs" value="Health Care" id="need-healthcare"><label for="need-healthcare">Health Care</label></li>
+        <li><input type="radio" name="needs" value="Hygiene" id="need-hygiene"><label for="need-hygiene">Hygiene</label></li>
+        <li><input type="radio" name="needs" value="Social Connections" id="need-social"><label for="need-social">Social Connections</label></li>
+        <li><input type="radio" name="needs" value="Emotional Support" id="need-emotional"><label for="need-emotional">Emotional Support</label></li>
+        <li><input type="radio" name="needs" value="Self-Esteem" id="need-selfesteem"><label for="need-selfesteem">Self-Esteem</label></li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Wants</h2>
+      <ul id="wants-list">
+        <li><input type="radio" name="wants" value="Water" id="want-water"><label for="want-water">Water</label></li>
+        <li><input type="radio" name="wants" value="Exercise" id="want-exercise"><label for="want-exercise">Exercise</label></li>
+        <li><input type="radio" name="wants" value="Comfort" id="want-comfort"><label for="want-comfort">Comfort</label></li>
+        <li><input type="radio" name="wants" value="Connection" id="want-connection"><label for="want-connection">Connection</label></li>
+        <li><input type="radio" name="wants" value="Validation" id="want-validation"><label for="want-validation">Validation</label></li>
+        <li><input type="radio" name="wants" value="Support" id="want-support"><label for="want-support">Support</label></li>
+        <li><input type="radio" name="wants" value="Relaxation" id="want-relaxation"><label for="want-relaxation">Relaxation</label></li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Desires</h2>
+      <ul id="desires-list">
+        <li><input type="radio" name="desires" value="Happiness" id="desire-happiness"><label for="desire-happiness">Happiness</label></li>
+        <li><input type="radio" name="desires" value="Purpose" id="desire-purpose"><label for="desire-purpose">Purpose</label></li>
+        <li><input type="radio" name="desires" value="Love" id="desire-love"><label for="desire-love">Love</label></li>
+        <li><input type="radio" name="desires" value="Friendship" id="desire-friendship"><label for="desire-friendship">Friendship</label></li>
+        <li><input type="radio" name="desires" value="Success" id="desire-success"><label for="desire-success">Success</label></li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Necessities</h2>
+      <ul id="necessities-list">
+        <li><input type="radio" name="necessities" value="Food" id="necessity-food"><label for="necessity-food">Food</label></li>
+        <li><input type="radio" name="necessities" value="Shelter" id="necessity-shelter"><label for="necessity-shelter">Shelter</label></li>
+        <li><input type="radio" name="necessities" value="Sleep" id="necessity-sleep"><label for="necessity-sleep">Sleep</label></li>
+        <li><input type="radio" name="necessities" value="Health Care" id="necessity-healthcare"><label for="necessity-healthcare">Health Care</label></li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Problems and Challenges</h2>
+      <ul id="problems-list">
+        <li><input type="radio" name="problems" value="Financial Constraints" id="problem-finance"><label for="problem-finance">Financial Constraints</label></li>
+        <li><input type="radio" name="problems" value="Food Insecurity" id="problem-food"><label for="problem-food">Food Insecurity</label></li>
+        <li><input type="radio" name="problems" value="Sleep Deprivation" id="problem-sleep"><label for="problem-sleep">Sleep Deprivation</label></li>
+        <li><input type="radio" name="problems" value="Lack of Access to Health Care" id="problem-health"><label for="problem-health">Lack of Access to Health Care</label></li>
+      </ul>
+    </div>
+    
+    <div class="section">
+      <h2>Things People Love</h2>
+      <ul id="loves-list">
+        <li><input type="radio" name="loves" value="Connection" id="love-connection"><label for="love-connection">Connection</label></li>
+        <li><input type="radio" name="loves" value="Success" id="love-success"><label for="love-success">Success</label></li>
+        <li><input type="radio" name="loves" value="Support" id="love-support"><label for="love-support">Support</label></li>
+        <li><input type="radio" name="loves" value="Relaxation" id="love-relaxation"><label for="love-relaxation">Relaxation</label></li>
+        <li><input type="radio" name="loves" value="Happiness" id="love-happiness"><label for="love-happiness">Happiness</label></li>
+      </ul>
+    </div>
+    
+    <!-- Diagnostic Survey -->
+    <div class="section">
+      <h2>Diagnostic Survey</h2>
+      <form id="diagnosticForm">
+        <div class="form-group">
+          <label for="challengeDescription">Describe the Nature of Your Challenge:</label>
+          <textarea id="challengeDescription" name="challengeDescription" placeholder="What is happening? What are you struggling with?"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="criticalAspects">Key Aspects (Personality/Character, Resources, Focus, & Others):</label>
+          <textarea id="criticalAspects" name="criticalAspects" placeholder="What are the critical factors?"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="swotAnalysis">SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats):</label>
+          <textarea id="swotAnalysis" name="swotAnalysis" placeholder="Briefly describe your SWOT analysis"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="environment">Environmental & Situational Awareness:</label>
+          <textarea id="environment" name="environment" placeholder="Describe your current environment and circumstances"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="insights">Your Insights & Potential New Strengths:</label>
+          <textarea id="insights" name="insights" placeholder="What insights have you discovered?"></textarea>
+        </div>
+        <button type="button" class="survey-button" onclick="generateAnalysis()">Generate Analysis</button>
+      </form>
+    </div>
+    
+    <!-- Analysis Result -->
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <!-- Navigation -->
+    <div class="section" style="text-align: center;">
+      <a href="guiding_policy.html" class="next-button">Proceed to Next Stage</a>
+    </div>
+  </div>
+  
+  <script>
+    function generateAnalysis() {
+      const getSelected = (name) => {
+        const radios = document.getElementsByName(name);
+        for (let radio of radios) {
+          if (radio.checked) return radio.value;
+        }
+        return 'Not specified';
+      };
+      
+      const selectedNeed = getSelected("needs");
+      const selectedWant = getSelected("wants");
+      const selectedDesire = getSelected("desires");
+      const selectedNecessity = getSelected("necessities");
+      const selectedProblem = getSelected("problems");
+      const selectedLove = getSelected("loves");
+      
+      const challengeDescription = document.getElementById("challengeDescription").value || "Not provided";
+      const criticalAspects = document.getElementById("criticalAspects").value || "Not provided";
+      const swotAnalysis = document.getElementById("swotAnalysis").value || "Not provided";
+      const environment = document.getElementById("environment").value || "Not provided";
+      const insights = document.getElementById("insights").value || "Not provided";
+      
+      const analysisText = `
+        <h2>Diagnostic Analysis</h2>
+        <p><strong>Your Selection Summary:</strong></p>
+        <ul>
+          <li><strong>Need:</strong> ${selectedNeed}</li>
+          <li><strong>Want:</strong> ${selectedWant}</li>
+          <li><strong>Desire:</strong> ${selectedDesire}</li>
+          <li><strong>Necessity:</strong> ${selectedNecessity}</li>
+          <li><strong>Problem/Challenge:</strong> ${selectedProblem}</li>
+          <li><strong>Things You Love:</strong> ${selectedLove}</li>
+        </ul>
+        <p><strong>Challenge Description:</strong> ${challengeDescription}</p>
+        <p><strong>Critical Aspects (You / Focus / Others):</strong> ${criticalAspects}</p>
+        <p><strong>SWOT Analysis:</strong> ${swotAnalysis}</p>
+        <p><strong>Environmental & Situational Awareness:</strong> ${environment}</p>
+        <p><strong>Your Insights & Potential Strengths:</strong> ${insights}</p>
+        <p>This diagnostic summary simplifies your complex reality into critical aspects, identifying potential advantages and revealing areas for strategic action.</p>
+      `;
+      
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = analysisText;
+      resultDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>

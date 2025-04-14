@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategy Simulation - Master Strategist</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      font-family: Arial, sans-serif;
+      background: white;
+      color: #333;
+      padding: 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    p { margin-bottom: 15px; }
+    .simulation-area {
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      min-height: 300px;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      overflow-y: auto;
+    }
+    .simulation-textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-height: 100px;
+      margin-bottom: 20px;
+      resize: vertical;
+    }
+    .update-button, .next-button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .update-button:hover, .next-button:hover { background-color: darkblue; }
+    .nav-area { text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Strategy Simulation</h1>
+    <p>
+      This page simulates your overall strategy in real time, merging insights from Analysis, Guiding Policy, and Coherent Actions.
+      Adjust the simulation below using the editable text area. Modify the text as needed to refine your strategy.
+    </p>
+    
+    <!-- Display simulation summary -->
+    <div id="simulationDisplay" class="simulation-area">
+      <strong>Overall Simulation Summary:</strong>
+      <br><br>
+      <em>Analysis Stage:</em> [Your diagnostic inputs and selections are summarized here.]
+      <br><br>
+      <em>Guiding Policy Stage:</em> [Your guiding policy is detailed here.]
+      <br><br>
+      <em>Coherent Actions Stage:</em> [Your coordinated actions are summarized here.]
+      <br><br>
+      Use the area below to modify the simulation in real time.
+    </div>
+    
+    <!-- Editable area to modify simulation -->
+    <textarea id="simulationInput" class="simulation-textarea" placeholder="Type here to modify the simulation..."></textarea>
+    
+    <!-- Update Simulation Button -->
+    <button type="button" class="update-button" onclick="updateSimulation()">Update Simulation</button>
+    
+    <div class="nav-area">
+      <a href="final_stage.html" class="next-button">Proceed to Final Stage</a>
+    </div>
+  </div>
+  
+  <script>
+    const simulationDisplay = document.getElementById("simulationDisplay");
+    const simulationInput = document.getElementById("simulationInput");
+    
+    function updateSimulation() {
+      let userModification = simulationInput.value.trim();
+      if (userModification !== "") {
+        simulationDisplay.innerHTML += "<br><br><strong>User Modifications:</strong><br>" + userModification;
+        simulationInput.value = "";
+      } else {
+        alert("Please enter your modifications before updating the simulation.");
+      }
+    }
+  </script>
+</body>
+</html>

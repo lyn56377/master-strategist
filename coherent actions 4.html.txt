@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coherent Actions - Master Strategist</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { font-family: Arial, sans-serif; background: white; color: #333; padding: 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1, h2, h3 { text-align: center; margin-bottom: 15px; }
+    p { margin-bottom: 15px; }
+    form {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    .action-button, .next-button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .action-button:hover, .next-button:hover { background-color: darkblue; }
+    .result-section {
+      background: #e7f3ff;
+      border: 1px solid #b3d4fc;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .result-section h3 { margin-bottom: 10px; color: blue; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Coherent Actions</h1>
+    <p>
+      This stage turns your guiding policy into actionable, coordinated steps that you can implement in the real world.
+      The actions are resource-based, timed, and thoroughly coordinated to ensure each move reinforces the next.
+    </p>
+    
+    <form id="actionsForm">
+      <div class="form-group">
+        <label for="additionalDetails">Additional Action Details (Optional):</label>
+        <textarea id="additionalDetails" name="additionalDetails" placeholder="Enter further details or context for your actions..."></textarea>
+      </div>
+      <button type="button" class="action-button" onclick="generateCoherentActions()">Generate Coherent Actions</button>
+    </form>
+    
+    <div id="actionsResult" class="result-section" style="display: none;"></div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="strategy_simulation.html" class="next-button">Proceed to Next Stage</a>
+    </div>
+  </div>
+  
+  <script>
+    function generateCoherentActions() {
+      const additionalDetails = document.getElementById("additionalDetails").value || "No additional details provided.";
+      
+      const actionsHTML = `
+        <h3>Overall Coherent Actions</h3>
+        <p>
+          The following coordinated actions are derived from your guiding policy. They outline resource deployments, timed manoeuvres, and a step-by-step strategy designed to execute your plan with precision.
+        </p>
+        
+        <h3>Resources Deployment</h3>
+        <p>
+          Identify and allocate the resources required—financial, human, and material—to support your actions.
+        </p>
+        
+        <h3>Effort, Timing and Manoeuvres</h3>
+        <p>
+          Establish the exact timing and sequence of actions. Each step is carefully planned: know when to act, wait, or pivot based on unfolding events.
+        </p>
+        
+        <h3>Step-by-Step Strategy</h3>
+        <p>
+          1. Assess current resources and environment.
+          <br>
+          2. Prioritize actions that reinforce your guiding policy.
+          <br>
+          3. Set measurable milestones.
+          <br>
+          4. Execute each manoeuvre in a coordinated sequence.
+        </p>
+        
+        <h3>Intelligent Design of Coordinated Action</h3>
+        <p>
+          The strategy is premeditated and built upon research, anticipating competitor behavior and integrating external insights.
+        </p>
+        
+        <h3>Summary of Doable Actions</h3>
+        <p>
+          By combining resource allocation with coordinated effort and timing, your actions become feasible steps toward overcoming your challenges.
+        </p>
+        
+        <p><strong>Additional Details Provided:</strong> ${additionalDetails}</p>
+      `;
+      
+      const resultDiv = document.getElementById("actionsResult");
+      resultDiv.innerHTML = actionsHTML;
+      resultDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>

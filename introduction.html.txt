@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Strategist - Introduction</title>
+  <style>
+    /* Reset and Global Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: Arial, sans-serif; background: white; }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .logo-image { max-width: 300px; width: 100%; height: auto; }
+    .site-name { font-size: 2.5rem; color: blue; margin-top: 20px; }
+    .winning-text { font-size: 1.25rem; color: gray; margin-top: 10px; }
+    .summary { font-size: 1rem; color: #333; margin-top: 20px; line-height: 1.5; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .start-button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: blue;
+      color: white;
+      font-size: 1.25rem;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      transition: background-color 0.3s ease;
+    }
+    .start-button:hover { background-color: darkblue; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo Section: Replace 'your-logo.png' once you have a digital image -->
+    <div class="logo">
+      <img src="your-logo.png" alt="Master Strategist Logo" class="logo-image">
+    </div>
+    
+    <!-- Site Name -->
+    <h1 class="site-name">make you MASTER STRATEGIST</h1>
+    
+    <!-- Winning Statement -->
+    <p class="winning-text">Winning and getting what you want in real life.</p>
+    
+    <!-- Summary of Capabilities/Characteristics -->
+    <div class="summary">
+      <p><strong>Capabilities:</strong> Strategy, Intelligence, Focus, Vision, Analysis, Creativity, Adaptability, Resilience, Leadership, Risk Management, Decision-making, Emotional Intelligence, Innovation, Communication, Influence, Problem-solving.</p>
+      <p><strong>Characteristics:</strong> Mental Toughness, Precision, Insight, Boldness, Awareness, Competence, Expertise, Intuition, Control, Mastery, Strategy, Dedication, Confidence, Agility, Influence, Foresight, Determination.</p>
+    </div>
+    
+    <!-- Start Button -->
+    <a href="analysis.html" class="start-button">Start Your Journey</a>
+  </div>
+</body>
+</html>
