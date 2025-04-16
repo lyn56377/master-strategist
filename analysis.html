@@ -296,6 +296,76 @@
     .catch(err => {
       console.error("Error loading enhanced sentiment model:", err);
     });
+<script>
+  // Function to append the comprehensive diagnosis description
+  function appendDiagnosisDescription() {
+    const descriptionText = `
+      <h3>Diagnosis Description</h3>
+      <p>
+        A diagnosis that defines or explains the nature of the challenge. A good diagnosis simplifies
+        the often overwhelming complexity of reality by identifying certain aspects of the situation as critical.
+        A diagnosis names or classifies the situation, linking facts into patterns and suggesting that more attention 
+        be paid to some issues and less to others. An especially insightful diagnosis can transform one’s view of the 
+        situation, bringing a radically different perspective to bear. When a diagnosis classifies the situation as 
+        a certain type, it opens access to knowledge about how analogous situations were handled in the past. An explicit 
+        diagnosis permits one to evaluate the rest of the strategy.
+      </p>
+    `;
+    // Append this description to the output area (diagnosisOutput)
+    const outputContainer = document.getElementById('diagnosisOutput');
+    if (outputContainer) {
+      outputContainer.innerHTML += descriptionText;
+    }
+  }
+
+  // Call this function at the end of your enhanced diagnosis function.
+  // For example, in your generateEnhancedDiagnosis() function, after saving and displaying the summary,
+  // add the line:
+  //    appendDiagnosisDescription();
+
+  // If you prefer to have it automatically appended when the page loads (or the diagnosis is generated),
+  // you can call it from within generateEnhancedDiagnosis(), like so:
+  function generateEnhancedDiagnosis() {
+    // [Your existing enhanced diagnosis code...]
+    // --- Start of your current code ---
+    const challenge = document.getElementById('challengeDescription').value || "No challenge description provided.";
+    const aspects = document.getElementById('criticalAspects').value || "No key aspects provided.";
+    const env = document.getElementById('environment').value || "No environmental details provided.";
+    const insights = document.getElementById('insights').value || "No insights provided.";
+
+    if (window.sentimentModel) {
+      const prediction = window.sentimentModel.predict(challenge);
+      const sentimentScore = prediction.score;
+      let enhancedInsights = "<p><strong>Enhanced Auto-generated Insights:</strong></p>";
+      if (sentimentScore < 0.4) {
+        enhancedInsights += "<p>Your challenge sentiment is negative, suggesting high stress or potential issues that need addressing.</p>";
+      } else if (sentimentScore < 0.6) {
+        enhancedInsights += "<p>The sentiment is neutral; consider adding more detail for a deeper analysis.</p>";
+      } else {
+        enhancedInsights += "<p>The sentiment is positive, which may indicate underlying strengths you can leverage.</p>";
+      }
+      if (challenge.length < 50) {
+        enhancedInsights += "<p>Your challenge description is brief—more detail might help in identifying critical aspects.</p>";
+      }
+      const enhancedSummary = `
+         <p><strong>Challenge:</strong> ${challenge}</p>
+         <p><strong>Key Aspects:</strong> ${aspects}</p>
+         <p><strong>Environment:</strong> ${env}</p>
+         <p><strong>Insights:</strong> ${insights}</p>
+         ${enhancedInsights}
+      `;
+      const diagnosisOutput = document.getElementById('diagnosisOutput');
+      diagnosisOutput.innerHTML += enhancedSummary;
+      let diagnosisData = localStorage.getItem('diagnosisData') ? JSON.parse(localStorage.getItem('diagnosisData')) : {};
+      diagnosisData.enhancedSummary = enhancedSummary;
+      localStorage.setItem('diagnosisData', JSON.stringify(diagnosisData));
+    } else {
+      console.log("Sentiment model not loaded yet.");
+    }
+    // ----- Now append the diagnosis description text -----
+    appendDiagnosisDescription();
+  }
+</script>
 </script>
 </body>
 </html>
