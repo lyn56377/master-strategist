@@ -213,3 +213,75 @@
   </script>
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ml5/0.12.2/ml5.min.js"></script>
+<script>
+  // New upgraded functionality: Enhanced Diagnosis using ml5 Sentiment Analysis.
+  function generateEnhancedDiagnosis() {
+    // Retrieve the same form fields as your existing code.
+    const challenge = document.getElementById('challengeDescription').value || "No challenge description provided.";
+    const aspects = document.getElementById('criticalAspects').value || "No key aspects provided.";
+    const env = document.getElementById('environment').value || "No environmental details provided.";
+    const insights = document.getElementById('insights').value || "No insights provided.";
+
+    // Use ml5.js for sentiment analysis.
+    // Ensure the sentiment model is loaded (ml5.sentiment has been loaded already).
+    if (window.sentimentModel) {
+      const prediction = window.sentimentModel.predict(challenge);
+      const sentimentScore = prediction.score;
+
+      // Generate auto insights incorporating sentiment.
+      let enhancedInsights = "<p><strong>Enhanced Auto-generated Insights:</strong></p>";
+      if (sentimentScore < 0.4) {
+          enhancedInsights += "<p>Your challenge sentiment is negative, suggesting high stress or potential issues that need addressing.</p>";
+      } else if (sentimentScore < 0.6) {
+          enhancedInsights += "<p>The sentiment is neutral; consider adding more detail for a deeper analysis.</p>";
+      } else {
+          enhancedInsights += "<p>The sentiment is positive, which may indicate underlying strengths you can leverage.</p>";
+      }
+      // Example heuristic adjustments (feel free to tweak these):
+      if (challenge.length < 50) {
+          enhancedInsights += "<p>Your challenge description is brief—more detail might help in identifying critical aspects.</p>";
+      }
+      // Append additional comparisons with existing input, if needed.
+      
+      // Now, combine this enhanced insight with your original diagnosis summary.
+      const enhancedSummary = `
+        <p><strong>Challenge:</strong> ${challenge}</p>
+        <p><strong>Key Aspects:</strong> ${aspects}</p>
+        <p><strong>Environment:</strong> ${env}</p>
+        <p><strong>Insights:</strong> ${insights}</p>
+        ${enhancedInsights}
+      `;
+      
+      // Display the enhanced diagnosis result in an additional container, or append to your existing output.
+      const diagnosisOutput = document.getElementById('diagnosisOutput');
+      diagnosisOutput.innerHTML += enhancedSummary;
+
+      // Save enhanced data (if desired) in localStorage, for later stages
+      let diagnosisData = localStorage.getItem('diagnosisData') ? JSON.parse(localStorage.getItem('diagnosisData')) : {};
+      diagnosisData.enhancedSummary = enhancedSummary;
+      localStorage.setItem('diagnosisData', JSON.stringify(diagnosisData));
+    } else {
+      console.log("Sentiment model not loaded yet.");
+    }
+  }
+
+  // Optionally, create a new button for the enhanced diagnosis so you can test it without disrupting the original.
+  // For example, you can add this code at the end of your form.
+  const enhancedBtn = document.createElement("button");
+  enhancedBtn.textContent = "Generate Enhanced Diagnosis";
+  enhancedBtn.className = "generate-button";
+  enhancedBtn.onclick = generateEnhancedDiagnosis;
+  document.getElementById("diagnosisForm").appendChild(enhancedBtn);
+
+  // Also, ensure the ml5 sentiment model is loaded once and stored globally.
+  ml5.sentiment('movieReviews')
+    .then(model => {
+      // Save this model in a global variable so the upgraded function can use it.
+      window.sentimentModel = model;
+      console.log("Enhanced Sentiment Model Loaded");
+    })
+    .catch(err => {
+      console.error("Error loading enhanced sentiment model:", err);
+    });
+</script>
