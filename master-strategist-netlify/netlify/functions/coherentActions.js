@@ -1,12 +1,15 @@
+// netlify/functions/coherentActions.js
 exports.handler = async (event) => {
-  const data = JSON.parse(event.body || "{}");
-  // TODO: implement coherent actions logic using policy data
+  const { policy } = JSON.parse(event.body || "{}");
+
+  // Break policy into steps by sentences
+  const actions = policy.split(".").map(s => s.trim()).filter(Boolean);
+
   return {
     statusCode: 200,
     body: JSON.stringify({
       stage: "coherentActions",
-      received: data,
-      recommendation: "Placeholder coherent actions result"
+      actions
     })
   };
 };
