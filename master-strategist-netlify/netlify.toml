@@ -1,6 +1,10 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+[build]
+  publish = "."             # your static files are in the root
+  functions = "netlify/functions"
+
 
 [[redirects]]
   from = "/api/diagnosis"
