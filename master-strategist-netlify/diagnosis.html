@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagnosis Stage</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    label, textarea, button { display: block; margin: 10px 0; width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>Diagnosis Stage</h1>
+  <label>Challenge Description:</label>
+  <textarea id="challenge"></textarea>
+  <label>Key Aspects:</label>
+  <textarea id="aspects"></textarea>
+  <label>Environment:</label>
+  <textarea id="env"></textarea>
+  <label>User Insights:</label>
+  <textarea id="insights"></textarea>
+  <button onclick="runDiagnosis()">Run Diagnosis</button>
+  <div id="output"></div>
+  <script>
+    async function runDiagnosis() {
+      const payload = {
+        challenge: document.getElementById('challenge').value,
+        aspects: document.getElementById('aspects').value,
+        env: document.getElementById('env').value,
+        insights: document.getElementById('insights').value
+      };
+      const res = await fetch('/.netlify/functions/diagnose', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+      // Optionally store for next stage
+      localStorage.setItem('diagnosisData', JSON.stringify(data));
+    }
+  </script>
+</body>
+</html>

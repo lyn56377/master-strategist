@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Strategy Simulation Stage</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Strategy Simulation</h1>
+  <button onclick="runSimulation()">Simulate Strategy</button>
+  <div id="output"></div>
+  <script>
+    async function runSimulation() {
+      const actions = JSON.parse(localStorage.getItem('actionsData') || '{}');
+      const res = await fetch('/.netlify/functions/strategySimulation', {
+        method: 'POST',
+        body: JSON.stringify(actions)
+      });
+      const data = await res.json();
+      document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

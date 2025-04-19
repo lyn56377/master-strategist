@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guiding Policy Stage</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Guiding Policy Stage</h1>
+  <button onclick="runPolicy()">Generate Guiding Policy</button>
+  <div id="output"></div>
+  <script>
+    async function runPolicy() {
+      const diag = JSON.parse(localStorage.getItem('diagnosisData') || '{}');
+      const res = await fetch('/.netlify/functions/guidingPolicy', {
+        method: 'POST',
+        body: JSON.stringify(diag)
+      });
+      const data = await res.json();
+      document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+      localStorage.setItem('policyData', JSON.stringify(data));
+    }
+  </script>
+</body>
+</html>
