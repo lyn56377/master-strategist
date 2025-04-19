@@ -2,6 +2,7 @@
   publish = "."
   functions = "netlify/functions"
 
+Add netlify.toml to configure functions
 
 [[redirects]]
   from = "/api/diagnosis"
