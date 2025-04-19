@@ -1,0 +1,11 @@
+{
+  "name": "master-strategist",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "sentiment": "^5.0.2",
+    "keyword-extractor": "^0.0.22",
+    "natural": "^6.2.3"
+  }
+}
+Add package.json for Netlify Functions
