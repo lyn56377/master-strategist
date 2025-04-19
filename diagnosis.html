@@ -365,6 +365,25 @@
     // ----- Now append the diagnosis description text -----
     appendDiagnosisDescription();
   }
+  <button onclick="runDiagnosis()">Run Diagnosis</button>
+<pre id="output"></pre>
+<script>
+async function runDiagnosis() {
+  const payload = {
+    challenge: document.getElementById('challenge').value,
+    aspects:  document.getElementById('aspects').value,
+    env:       document.getElementById('env').value,
+    insights:  document.getElementById('insights').value
+  };
+  const res = await fetch('/.netlify/functions/diagnose', {
+    method: 'POST', body: JSON.stringify(payload)
+  });
+  const data = await res.json();
+  document.getElementById('output').innerText = JSON.stringify(data, null,2);
+  localStorage.setItem('diagnosisData', JSON.stringify(data));
+}
+</script>
+
 </script>
 </script>
 </body>
