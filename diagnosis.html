@@ -382,7 +382,60 @@ async function runDiagnosis() {
   document.getElementById('output').innerText = JSON.stringify(data, null,2);
   localStorage.setItem('diagnosisData', JSON.stringify(data));
 }
+  <script>
+async function callDiagnosisFunction() {
+  const challenge = document.getElementById("challengeDescription").value;
+  const aspects = document.getElementById("criticalAspects").value;
+  const env = document.getElementById("environment").value;
+  const insights = document.getElementById("insights").value;
+
+  const payload = { challenge, aspects, env, insights };
+
+  try {
+    const response = await fetch("/.netlify/functions/diagnose", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    // Display the dynamic results
+    document.getElementById("diagnosisOutput").innerHTML = `
+      <h3>Diagnosis Summary</h3>
+      <p><strong>Sentiment Score:</strong> ${data.sentiment}</p>
+      <p><strong>Keywords:</strong> ${data.keywords.join(", ")}</p>
+      <p><strong>SWOT Analysis:</strong></p>
+      <ul>
+        <li><strong>Strengths:</strong> ${data.swot.strengths}</li>
+        <li><strong>Weaknesses:</strong> ${data.swot.weaknesses}</li>
+        <li><strong>Opportunities:</strong> ${data.swot.opportunities}</li>
+        <li><strong>Threats:</strong> ${data.swot.threats}</li>
+      </ul>
+      <p><strong>Original Inputs:</strong></p>
+      <p><em>Challenge:</em> ${data.summary.challenge}</p>
+      <p><em>Key Aspects:</em> ${data.summary.aspects}</p>
+      <p><em>Environment:</em> ${data.summary.environment}</p>
+      <p><em>Insights:</em> ${data.summary.insights}</p>
+    `;
+
+    // Optional: Save to localStorage for later stages
+    localStorage.setItem("diagnosisData", JSON.stringify(data));
+
+  } catch (error) {
+    console.error("Error calling diagnosis function:", error);
+    document.getElementById("diagnosisOutput").innerHTML = "Something went wrong. Try again.";
+  }
+  <button onclick="callDiagnosisFunction()">Run Strategic Diagnosis</button>
+<div id="diagnosisOutput"></div>
+
+}
 </script>
+
+</script>
+  
 
 </script>
 </script>
